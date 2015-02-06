@@ -12,78 +12,58 @@ var Button       = require('./Button');
 var ButtonStyles = require('./ButtonStyles');
 var ButtonGroup  = require('./ButtonGroup');
 
-var TextAlignSwitcherStyles = {
-
-  childStyle: ReactStyle`
-    borderRadius: 0;
-    margin: 0;
-  `,
-
-  firstChildStyle: ReactStyle`
-    borderTopLeftRadius: 3px;
-    borderBottomLeftRadius: 3px;
-  `,
-
-  lastChildStyle: ReactStyle`
-    borderTopRightRadius: 3px;
-    borderBottomRightRadius: 3px;
-  `
-};
-
-class TextAlignSwitcher extends React.Component {
+class TextAlignSwitcher extends React.Component{
 
   render() {
     var props = this.props;
-
+    var textAlign = props.textAlign;
+    var onTextAlign = props.onTextAlign;
     return (
       <ButtonGroup styles={props.styles}>
         <Button
-          active={props.textAlign === 'left'}
-          onClick={() => {props.onTextAlign('left')}}
-          styles={[TextAlignSwitcherStyles.childStyle, TextAlignSwitcherStyles.firstChildStyle]}>
+          active={textAlign === 'left'}
+          onClick={onTextAlign.bind(null, 'left')}>
           <Icon name="align-left" /> Left
         </Button>
         <Button
-          active={props.textAlign === 'center'}
-          onClick={() => {props.onTextAlign('center')}}
-          styles={[TextAlignSwitcherStyles.childStyle]}>
+          active={textAlign === 'center'}
+          onClick={onTextAlign.bind(null, 'center')}>
           <Icon name="align-center" /> Center
         </Button>
         <Button
-          active={props.textAlign === 'right'}
-          onClick={() => {props.onTextAlign('right')}}
-          styles={[TextAlignSwitcherStyles.childStyle, TextAlignSwitcherStyles.lastChildStyle]}>
+          active={textAlign === 'right'}
+          onClick={onTextAlign.bind(null, 'right')}>
           <Icon name="align-right" /> Right
         </Button>
       </ButtonGroup>
     );
   }
-
 }
 
 var ApplicationStyles = {
 
-  normalStyle: ReactStyle`
-    backgroundColor: white;
-    fontSize: 10pt;
-    padding: 1em;
-    margin: 10px;
-  `,
+  normalStyle: ReactStyle({
+    backgroundColor: 'white',
+    fontSize: '10pt',
+    padding: '1em',
+    margin: 10
+  }),
 
-  childStyle: ReactStyle`
-    marginRight: 0.5em
-  `,
+  childStyle: ReactStyle({
+    marginRight: '0.5em'
+  }),
 
-  lastChildStyle: ReactStyle`
+  lastChildStyle: ReactStyle({
     marginRight: 0
-  `
+  })
 
 };
 
 class Application extends React.Component {
 
-  constructor(props) {
+  constructor(props){
     super(props);
+
     this.state = {
       textAlign: 'left'
     };
@@ -102,7 +82,7 @@ class Application extends React.Component {
         <TextAlignSwitcher
           styles={ApplicationStyles.lastChild}
           onTextAlign={(textAlign) => this.setState({textAlign: textAlign})}
-        />
+          />
       </div>
     );
   }

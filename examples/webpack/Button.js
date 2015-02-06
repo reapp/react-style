@@ -32,8 +32,8 @@ var ButtonStyles = {
   }),
 
   hoverStyle: ReactStyle({
-    color: '#000',
-    backgroundImage: 'linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10))'
+    backgroundImage: 'linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10))',
+    color:      '#000'
   }),
 
   focusStyle: ReactStyle({
@@ -43,10 +43,11 @@ var ButtonStyles = {
 
 };
 
-class Button {
+class Button extends React.Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       focus: false,
       hover: false
     };
@@ -74,4 +75,4 @@ class Button {
   }
 }
 
-module.exports = React.createClass(Button.prototype);
+module.exports = Button;

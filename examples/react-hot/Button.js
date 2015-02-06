@@ -3,8 +3,8 @@
  */
 'use strict';
 
-var ReactStyle = require('react-style');
 var React = require('react');
+var ReactStyle = require('react-style');
 
 var ButtonStyles = {
 
@@ -24,8 +24,7 @@ var ButtonStyles = {
     textDecoration: 'none',
     verticalAlign: 'baseline',
     whiteSpace: 'nowrap',
-    zoom: 1,
-    zIndex: 2000
+    zoom: 1
   }),
 
   activeStyle: ReactStyle({
@@ -44,7 +43,7 @@ var ButtonStyles = {
 
 };
 
-class Button extends React.Component {
+class Button extends React.Component{
 
   constructor(props) {
     super(props);
@@ -58,19 +57,19 @@ class Button extends React.Component {
     var props = this.props;
     var state = this.state;
     var styles = [
-      ButtonStyles.normalStyle,
-      props.active ? ButtonStyles.activeStyle : null,
-      state.hover ? ButtonStyles.hoverStyle : null,
-      state.focus ? ButtonStyles.focusStyle : null
+        ButtonStyles.normalStyle,
+        props.active ? ButtonStyles.activeStyle : null,
+        state.hover ? ButtonStyles.hoverStyle : null,
+        state.focus ? ButtonStyles.focusStyle : null
     ].concat(props.styles);
 
     return (
       <button {...props} className="custom" styles={styles}
         onMouseEnter={() => this.setState({hover: true})}
         onMouseLeave={() => this.setState({hover: false})}
-        onFocus={() => this.setState({focus: true})}
+        onFocus={() => this.setState({focus:true})}
         onBlur={() => this.setState({focus: false})}>
-        {props.children}
+      {props.children}
       </button>
     );
   }

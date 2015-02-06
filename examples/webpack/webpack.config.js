@@ -24,7 +24,7 @@ module.exports = {
         test: /\.js$/,
         loaders: [
           ReactStylePlugin.loader(),
-          'jsx-loader?harmony&sourceMap'
+          'jsx-loader?harmony'
         ]
       },
       {
